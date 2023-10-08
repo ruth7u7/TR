@@ -20,6 +20,7 @@ class CreateViajeTable extends Migration
             $table->string('numero_trabajadores');
             $table->unsignedBigInteger('id_bus');
             $table->double('costo');
+
             $table->timestamps();
 
             //CLAVES FORANEAS
