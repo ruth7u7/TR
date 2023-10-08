@@ -15,16 +15,10 @@ class CreateBusTable extends Migration
     {
         Schema::create('bus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_viaje');
-            $table->string('duracion_viaje');
             $table->string('modelo');
             $table->string('placa');
-            $table->string('estado');
             $table->string('marca');
             $table->timestamps();
-
-            //CLAVES FORANEAS
-            $table->foreign('id_viaje')->references('id')->on('viaje');
         });
     }
 

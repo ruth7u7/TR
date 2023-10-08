@@ -15,18 +15,14 @@ class CreateViajeTable extends Migration
     {
         Schema::create('viaje', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_fecha');
-            $table->unsignedBigInteger('id_sede');
-            $table->string('numero_trabajadores');
-            $table->unsignedBigInteger('id_bus');
+            $table->foreignId('id_cliente')->nullable()->references('id')->on('cliente');//CLAVE FORANEA
+            $table->foreignId('id_fecha')->nullable()->references('id')->on('fecha');//CLAVE FORANEA
+            $table->foreignId('id_sede')->nullable()->references('id')->on('sede');//CLAVE FORANEA
+            $table->foreignId('id_bus')->nullable()->references('id')->on('bus');//CLAVE FORANEA
+            $table->string('destino');
+            $table->string('duracion_viaje');
             $table->double('costo');
-
             $table->timestamps();
-
-            //CLAVES FORANEAS
-            $table->foreign('id_fecha')->references('id')->on('fecha');
-            $table->foreign('id_sede')->references('id')->on('sede');
-            $table->foreign('id_bus')->references('id')->on('bus');
         });
     }
 
