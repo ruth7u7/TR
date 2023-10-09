@@ -10,8 +10,12 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 
 class ClienteController extends Controller
 {
-    public function mostrarcliente()
+
+    public function index()
     {
+        /*$clientes = Cliente::paginate();
+        return view('cliente.index', compact('clientes'))
+            ->with('i', (request()->input('page', 1) - 1) * $clientes->perPage());*/
         $cliente=Cliente::get();
         return response()->json($cliente);
     }
@@ -30,9 +34,9 @@ class ClienteController extends Controller
         return response()->json(["Respuesta" => "Se ha creado correctamente un cliente"]);
     }
 
-    public function actualizar(Request $request, $idcliente)
+    public function actualizar(Request $request, $id)
     {
-        $datos=Cliente::find($idcliente);
+        $datos=Cliente::find($id);
         $datos->fill([
             'nombre'=>$request->nombre,
             'apellido'=>$request->apellido,
@@ -45,12 +49,12 @@ class ClienteController extends Controller
         return response()->json(["Respuesta" => "Cliente actualizado correctamente"]);
     }
 
-    public function eliminar($idcliente)
+    public function eliminar($id)
     {
         DB::beginTransaction();
-        try 
+        try
         {
-            $datos = Cliente::find($idcliente);
+            $datos = Cliente::find($id);
             if($datos)
             {
                 $datos->delete();
@@ -66,6 +70,5 @@ class ClienteController extends Controller
                 return response()->json(["Respuesta" => "Error","Error" => $e]);
         }
     }
-    
 
 }

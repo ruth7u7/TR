@@ -3,48 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\LugarTuristico;
-use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 
 class LugarTuristicoController extends Controller
 {
-    public function mostrarlugares()
+
+    public function index()
     {
-        $lt=LugarTuristico::get();
-        return response()->json($lt);
+        /*$lugarTuristicos = LugarTuristico::paginate();
+
+        return view('lugar-turistico.index', compact('lugarTuristicos'))
+            ->with('i', (request()->input('page', 1) - 1) * $lugarTuristicos->perPage());*/
+        $lugar_turistico=LugarTuristico::get();
+        return response()->json($lugar_turistico);
     }
 
-    public function crear(Request $request){
+    public function crear(Request $request)
+    {
         LugarTuristico::create([
             'nombre'=>$request->nombre,
             'descripcion'=>$request->descripcion,
+            'id_ciudad'=>$request->id_ciudad
         ]);
-        return response()->json(["Respuesta" => "Se ha creado correctamente un Lugar turistico"]);
+        return response()->json(["Respuesta" => "Se ha creado correctamente un Lugar turístico"]);
     }
 
-    public function actualizar(Request $request, $lt)
+    public function actualizar(Request $request, $id)
     {
-        $datos=LugarTuristico::find($lt);
+        $datos=LugarTuristico::find($id);
         $datos->fill([
             'nombre'=>$request->nombre,
-            'descripcion'=>$request->descripcion
+            'descripcion'=>$request->descripcion,
+            'id_ciudad'=>$request->id_ciudad
         ])->save();
-        return response()->json(["Respuesta" => "Lugar Turistico actualizado correctamente"]);
+        return response()->json(["Respuesta" => "Lugar turístico actualizado correctamente"]);
     }
 
-    public function eliminar($lt)
+    public function eliminar($id)
     {
         DB::beginTransaction();
         try
         {
-            $datos = LugarTuristico::find($lt);
+            $datos = LugarTuristico::find($id);
             if($datos)
             {
                 $datos->delete();
                 DB::commit();
-                return response()->json(["Respuesta" => "Lugar turistico eliminado correctamente"]);
+                return response()->json(["Respuesta" => "Lugar turístico eliminado correctamente"]);
             }
             else{
                 return response()->json(["Respuesta" => "Registro no encontrado"]);
@@ -55,5 +63,5 @@ class LugarTuristicoController extends Controller
                 return response()->json(["Respuesta" => "Error","Error" => $e]);
         }
     }
-    
+
 }

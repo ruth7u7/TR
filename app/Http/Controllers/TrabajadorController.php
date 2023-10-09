@@ -6,13 +6,20 @@ use App\Models\Trabajador;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 
 class TrabajadorController extends Controller
 {
-    public function mostrartrabajador()
+
+    public function index()
     {
+        /*$trabajadors = Trabajador::paginate();
+
+        return view('trabajador.index', compact('trabajadors'))
+            ->with('i', (request()->input('page', 1) - 1) * $trabajadors->perPage());*/
         $trabajador=Trabajador::get();
         return response()->json($trabajador);
+
     }
 
     public function crear(Request $request)
@@ -20,36 +27,28 @@ class TrabajadorController extends Controller
         Trabajador::create([
             'nombre'=>$request->nombre,
             'apellido'=>$request->apellido,
-            'direccion'=>$request->direccion,
-            'dni'=>$request->dni,
-            'celular'=>$request->celular,
-            'correo'=>$request->correo,
-            'contraseña'=>$request->contraseña
+            'estado_registro'=>$request->estado_registro
         ]);
         return response()->json(["Respuesta" => "Se ha creado correctamente un trabajador"]);
     }
 
-    public function actualizar(Request $request, $idtrabajador)
+    public function actualizar(Request $request, $id)
     {
-        $datos=Trabajador::find($idtrabajador);
+        $datos=Trabajador::find($id);
         $datos->fill([
             'nombre'=>$request->nombre,
             'apellido'=>$request->apellido,
-            'direccion'=>$request->direccion,
-            'dni'=>$request->dni,
-            'celular'=>$request->celular,
-            'correo'=>$request->correo,
-            'contraseña'=>$request->contraseña
+            'estado_registro'=>$request->estado_registro
         ])->save();
         return response()->json(["Respuesta" => "Trabajador actualizado correctamente"]);
     }
 
-    public function eliminar($idtrabajador)
+    public function eliminar($id)
     {
         DB::beginTransaction();
         try
         {
-            $datos = Trabajador::find($idtrabajador);
+            $datos = Trabajador::find($id);
             if($datos)
             {
                 $datos->delete();
@@ -65,5 +64,5 @@ class TrabajadorController extends Controller
                 return response()->json(["Respuesta" => "Error","Error" => $e]);
         }
     }
-    
+
 }

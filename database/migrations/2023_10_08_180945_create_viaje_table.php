@@ -21,7 +21,7 @@ class CreateViajeTable extends Migration
             $table->foreignId('id_bus')->nullable()->references('id')->on('bus');//CLAVE FORANEA
             $table->string('destino');
             $table->string('duracion_viaje');
-            $table->double('costo');
+            $table->double('costo', 5, 2);
             $table->timestamps();
         });
     }

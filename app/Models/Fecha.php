@@ -4,29 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-class Trabajador extends Model
+class Fecha extends Model
 {
     /*
     static $rules = [
-		'estado_registro' => 'required',
+		'hora' => 'required',
+		'fecha' => 'required',
     ];
     protected $perPage = 20;
     */
-
-    protected $table = 'trabajador';
+    protected $table = 'fecha';
     protected $fillable = array(
-                            'nombre',
-                            'apellido',
-                            'estado_registro'
+                            'hora',
+                            'fecha'
     );
 
     protected $primaryKey = 'id';
-
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
-
+    public function viajes()
+    {
+        return $this->hasMany('App\Models\Viaje', 'id_fecha', 'id');
+    }
 
 
 }

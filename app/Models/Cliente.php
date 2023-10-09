@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+    /*
+    static $rules = [
+		'estado_registro' => 'required',
+    ];
+    protected $perPage = 20;
+    */
+
     protected $table = 'cliente';
-    protected $fillable = array (
+    protected $fillable = array(
                             'nombre',
                             'apellido',
                             'direccion',
@@ -19,10 +25,14 @@ class Cliente extends Model
                             'estado_registro'
     );
     protected $primaryKey = 'id';
+
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
-    public function viaje(){
-    //return $this->BelongsTo(Aqui va el nombre de la clase de viaje::class);
+    public function viajes()
+    {
+        return $this->hasMany('App\Models\Viaje', 'id_cliente', 'id');
     }
+
+
 }
