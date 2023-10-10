@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LugarTuristicoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//lama a formulario
+Route::get('lugares/mostrar', [LugarTuristicoController::class, 'index']);
+//guardar
+Route::post('lugares/guardar', [LugarTuristicoController::class, 'crear']);
