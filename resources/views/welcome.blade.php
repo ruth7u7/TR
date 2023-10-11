@@ -22,11 +22,13 @@
     <body>
         <div>
             <h1>Subir imágenes</h1>
-        <form action="/lugares/guardar" enctype="multipart/form-data" 
+        <form action="/lugares/guardar" enctype="multipart/form-data"
         method="post">
             @csrf
-            <input type="text" name="nombre" placeholder="Ingrese nombre:">
-            <input type="file" name="foto">
+            <label for="">Nombre:</label><br>
+            <input type="text" name="nombre" placeholder="Ingrese nombre:"><br>
+            <label for="">Foto:</label><br>
+            <input type="file" name="foto"><br>
             <button type="submit">guardar</button>
         </form>
         </div>
