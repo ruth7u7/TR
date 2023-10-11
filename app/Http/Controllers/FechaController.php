@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 class FechaController extends Controller
 {
 
-    public function index()
+    public function mostrarFecha()
     {
         /*$fechas = Fecha::paginate();
 

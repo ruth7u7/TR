@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 class SedeController extends Controller
 {
 
-    public function index()
+    public function mostrarSede()
     {
         /*$sedes = Sede::paginate();
         return view('sede.index', compact('sedes'))

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 class ViajeController extends Controller
 {
 
-    public function index()
+    public function mostrarViaje()
     {
         /*$viajes = Viaje::paginate();
 

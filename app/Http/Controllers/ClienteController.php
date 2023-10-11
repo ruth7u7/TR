@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 class ClienteController extends Controller
 {
 
-    public function index()
+    public function mostrarcliente()
     {
         /*$clientes = Cliente::paginate();
         return view('cliente.index', compact('clientes'))

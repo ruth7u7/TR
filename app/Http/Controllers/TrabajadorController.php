@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 class TrabajadorController extends Controller
 {
 
-    public function index()
+    public function mostrartrabajador()
     {
         /*$trabajadors = Trabajador::paginate();
 

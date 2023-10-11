@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 class BuController extends Controller
 {
 
-    public function index()
+    public function mostrarBus()
     {
         /*$bus = Bu::paginate();
 
