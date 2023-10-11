@@ -15,6 +15,7 @@ class LugarTuristico extends Model
     protected $table = 'lugar_turistico';
     protected $fillable = array(
                             'nombre',
+                            'foto',
                             'descripcion',
                             'id_ciudad',
                             'estado_registro'

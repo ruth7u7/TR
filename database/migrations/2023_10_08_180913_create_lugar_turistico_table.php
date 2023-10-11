@@ -16,6 +16,7 @@ class CreateLugarTuristicoTable extends Migration
         Schema::create('lugar_turistico', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->nullable();
+            $table->string('foto')->nullable();
             $table->string('descripcion')->nullable();
             $table->foreignId('id_ciudad')->nullable()->references('id')->on('ciudad');//CLAVE FORANEA
             $table->char('estado_registro')->default('A');
