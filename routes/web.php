@@ -21,3 +21,5 @@ Route::get('/', function () {
 Route::get('lugares/mostrar', [LugarTuristicoController::class, 'index']);
 //guardar
 Route::post('lugares/guardar', [LugarTuristicoController::class, 'crear']);
+
+Route::get('/login',[ClienteController::class, 'index'])->name('cliente.login');

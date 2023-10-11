@@ -10,7 +10,10 @@ use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 
 class ClienteController extends Controller
 {
-
+    public function index()
+    {
+        return view('login');
+    }
     public function mostrarcliente()
     {
         /*$clientes = Cliente::paginate();
@@ -70,5 +73,7 @@ class ClienteController extends Controller
                 return response()->json(["Respuesta" => "Error","Error" => $e]);
         }
     }
+
+
 
 }

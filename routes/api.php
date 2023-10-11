@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::get('cliente/login',[ClienteController::class, 'index'])->name('cliente.login');
 //Cliente
 Route::post('cliente/crear',[ClienteController::class, 'crear']);
 Route::get('cliente/show',[ClienteController::class, 'mostrarcliente']);
