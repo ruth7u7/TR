@@ -34,9 +34,9 @@ class LugarTuristicoController extends Controller
             $foto=$request->file("foto");
             $nombrefoto= Str::slug($request->nombre).".".$foto->guessExtension();
             $ruta = public_path("img/LugaresTuristicos/");
-            $foto->move($ruta,$nombrefoto);
+            $foto->move($ruta, $nombrefoto);
 
-            $post->foto=$nombrefoto;
+            $post->foto = "http://127.0.0.1:8000/img/LugaresTuristicos/" . $nombrefoto;
         }
         $post->save();
         return response()->json(["Respuesta" => "Se ha creado correctamente un Lugar turistico"]);
